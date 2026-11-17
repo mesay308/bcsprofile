@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@source "../../tools/build.py";
+@source "../../index.html";
+@source "../js/main.js";
+
+@theme {
+  --color-bcs-blue: #1D4860;
+  --color-bcs-navy: #0F2B3B;
+  --color-bcs-slate: #2A5F7D;
+  --color-bcs-yellow: #FFC000;
+  --color-bcs-gold: #8A6500;
+  --color-bcs-cream: #FFF9E6;
+  --color-bcs-bg: #F4F7F9;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #16303F;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+.site-header {
+  transition: transform 0.3s ease;
+}
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-link.is-active {
+  background-color: #FFC000;
+  color: #0F2B3B;
+  font-weight: 700;
+}
+
+.outline-link.is-active {
+  background-color: #FFF9E6;
+  color: #0F2B3B;
+  border-color: #FFC000;
+  font-weight: 700;
+}
+
+.hero-bg {
+  background:
+    radial-gradient(1000px 480px at 88% -10%, rgba(255, 192, 0, 0.16), transparent 60%),
+    radial-gradient(760px 460px at -10% 105%, rgba(42, 95, 125, 0.85), transparent 60%),
+    linear-gradient(135deg, #0F2B3B 0%, #1D4860 100%);
+}
+
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+}
+
+@media print {
+  .site-header {
+    position: static !important;
+    transform: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .card, .spec-panel, .phase-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
